@@ -1,8 +1,15 @@
 import "./App.css";
-import { Button, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { Chart } from "react-google-charts";
-
+import { useEffect } from "react";
+import { fetchMembers, getJSONFromCSV } from "./api";
 function App() {
+  useEffect(() => {
+    fetchMembers().then((data) => {
+      console.log(data);
+    });
+  }, []);
+
   return (
     <div className="px-4">
       <div className="d-flex justify-content-center container-xl">
@@ -21,7 +28,7 @@ function App() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="row__selected">
+                  <tr className="row__selected">
                     <td>Mark</td>
                     <td>Otto</td>
                   </tr>
