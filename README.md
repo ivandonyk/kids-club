@@ -1,1 +1,1 @@
-# kids-club
+## KidsClub Analytics Frontend
