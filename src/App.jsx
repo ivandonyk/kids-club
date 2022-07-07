@@ -1,5 +1,6 @@
 import "./App.css";
 import { Button, Table } from "react-bootstrap";
+import { Chart } from "react-google-charts";
 
 function App() {
   return (
@@ -31,7 +32,24 @@ function App() {
                 </tbody>
               </Table>
             </div>
-            <div className="member-games__chart-area"></div>
+            <div className="member-games__chart-area">
+              <Chart
+                chartType="PieChart"
+                data={[
+                  ["Member", "Games Played"],
+                  ["Work", 11],
+                  ["Eat", 2],
+                  ["Commute", 2],
+                  ["Watch TV", 2],
+                  ["Sleep", 7],
+                ]}
+                options={{
+                  chartArea: { left: 0, width: "90%" },
+                }}
+                width={"100%"}
+                height={"300px"}
+              />
+            </div>
           </div>
         </div>
       </div>
