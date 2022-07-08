@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GamesTable from "./components/GamesTable";
+import MembersTable from "./components/MembersTable";
 import GamesChart from "./components/GamesChart";
 import "./App.css";
 
@@ -16,7 +16,7 @@ function App() {
           </div>
           <div className="app-content">
             <div className="members__table-area">
-              <GamesTable
+              <MembersTable
                 selectedMember={selectedMember}
                 setSelectedMember={setSelectedMember}
               />
