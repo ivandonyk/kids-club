@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
+import { fetchMemberGames } from "../api";
 
 export default function GamesChart({ selectedMember }) {
+  const [memberGames, setMemberGames] = useState([]);
+
+  useEffect(() => {
+    fetchMemberGames(selectedMember).then((data) => {
+      setMemberGames(data);
+    });
+  }, [selectedMember]);
+
   return (
     <Chart
       chartType="PieChart"
-      data={[
-        ["Member", "Games Played"],
-        ["Work", 11],
-        ["Eat", 2],
-        ["Commute", 2],
-        ["Watch TV", 2],
-        ["Sleep", 7],
-      ]}
+      data={[["Member", "Games Played"], ...memberGames]}
       options={{
         chartArea: { left: 0, width: "90%" },
       }}
