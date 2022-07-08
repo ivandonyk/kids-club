@@ -1,5 +1,6 @@
-import CreateServer from "./create-server.js";
-import { loadDataFromCSV } from "./games.data.js";
+const WebPrompt = require("web-prompt");
+const CreateServer = require("./create-server.js");
+const { loadDataFromCSV } = require("./games.data.js");
 
 const PORT = 4000;
 

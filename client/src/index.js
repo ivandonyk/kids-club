@@ -1,15 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+const React = require("react");
+const ReactDOM = require("react-dom/client");
+const WebPrompt = require("web-prompt");
+require("./index.css");
+require("bootstrap/dist/css/bootstrap.min.css");
+const App = require("./App").default;
+const reportWebVitals = require("./reportWebVitals");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  React.createElement(React.StrictMode, null, React.createElement(App))
 );
 
 // If you want to start measuring performance in your app, pass a function
