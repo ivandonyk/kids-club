@@ -7,7 +7,7 @@ function App() {
   const [selectedMember, setSelectedMember] = useState(null);
 
   return (
-    <div className="px-4">
+    <div className="px-2">
       <div className="d-flex justify-content-center container-xl">
         <div className="w-100">
           <div className="app-header">
