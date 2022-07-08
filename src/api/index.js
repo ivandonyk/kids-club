@@ -27,6 +27,41 @@ export const fetchMembers = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(members);
-    }, 1500);
+    }, 500);
+  });
+};
+
+export const fetchGames = async () => {
+  const members = await fetchMembers();
+  const jsonData = await getJSONFromCSV();
+
+  const games = members.map((member) => {
+    const gamesCount = jsonData.filter((data) => data.member === member).length;
+
+    return { member, count: gamesCount };
+  });
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(games);
+    }, 500);
+  });
+};
+
+export const fetchMemberGames = async (memberName) => {
+  const jsonData = await getJSONFromCSV();
+
+  const gamesCounts = ["Chess", "Tennis", "Soccer"].map((game) => {
+    const gameCount = jsonData.filter(
+      (data) => data.member === memberName && data.game === game
+    ).length;
+
+    return { game, count: gameCount };
+  });
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(gamesCounts);
+    }, 500);
   });
 };
