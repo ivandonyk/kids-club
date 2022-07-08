@@ -56,12 +56,12 @@ export const fetchMemberGames = async (memberName) => {
       (data) => data.member === memberName && data.game === game
     ).length;
 
-    return { game, count: gameCount };
+    return [game, gameCount];
   });
 
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(gamesCounts);
-    }, 500);
+    }, 200);
   });
 };
