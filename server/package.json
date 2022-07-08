@@ -1,0 +1,21 @@
+{
+  "name": "kids-club-server",
+  "version": "1.0.0",
+  "description": "The local-api that will be consumed by the front-end code is placed inside of this folder",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.17.0",
+    "mocha": "^8.4.0",
+    "nodemon": "^2.0.16",
+    "supertest": "^6.1.3"
+  }
+}
