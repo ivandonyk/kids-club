@@ -17,6 +17,12 @@
   display: flex;
 }
 
+@media (max-width: 767px) {
+  .app-content {
+    flex-direction: column;
+  }
+}
+
 .members__table-area {
   width: 100%;
 }

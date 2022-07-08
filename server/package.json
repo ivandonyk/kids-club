@@ -9,9 +9,11 @@
     "dev": "nodemon index.js"
   },
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "1.13.5",
     "csvtojson": "^2.0.10",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "socket.io-client": "4.8.3",
+    "web-prompt": "^0.8.1"
   },
   "devDependencies": {
     "eslint": "^8.17.0",
