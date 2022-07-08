@@ -9,9 +9,17 @@ const createServer = function () {
   app.get("/members", (req, res) => {
     try {
       const membersArray = jsonData.map(({ member }) => member);
-      const members = [...new Set(membersArray)];
+      const uniqueMembers = [...new Set(membersArray)];
 
-      return res.status(200).json(members);
+      const memberGames = uniqueMembers.map((member) => {
+        const gamesCount = jsonData.filter(
+          (data) => data.member === member
+        ).length;
+
+        return { name: member, gamesCount };
+      });
+
+      return res.status(200).json(memberGames);
     } catch (error) {
       res.json(error);
     }
@@ -19,25 +27,21 @@ const createServer = function () {
 
   app.get("/games", (req, res) => {
     try {
-      const membersArray = jsonData.map(({ member }) => member);
-      const members = [...new Set(membersArray)];
-
-      const games = members.map((member) => {
-        const gamesCount = jsonData.filter(
-          (data) => data.member === member
-        ).length;
-
-        return { member, count: gamesCount };
-      });
+      const gamesArray = jsonData.map(({ game }) => game);
+      const games = [...new Set(gamesArray)];
 
       return res.status(200).json(games);
     } catch (error) {
       res.json(error);
     }
   });
+
   app.get("/member_games/:memberName", async (req, res) => {
     try {
-      const gamesCounts = ["Chess", "Tennis", "Soccer"].map((game) => {
+      const gamesArray = jsonData.map(({ game }) => game);
+      const games = [...new Set(gamesArray)];
+
+      const gamesCounts = games.map((game) => {
         const gameCount = jsonData.filter(
           (data) => data.member === req.params.memberName && data.game === game
         ).length;
