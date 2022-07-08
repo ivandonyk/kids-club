@@ -1,44 +1,51 @@
 import express from "express";
-
-// This is the API-Service that provides the job/order data
-// Endpoints are as follows
-// GET /list
-// GET /job/:jobId
-// GET /orders/:jobId
+import { jsonData } from "./games.data.js";
 
 const createServer = function () {
   const app = express();
 
   app.use(express.static("public"));
 
-  app.get("/list", (req, res) => {
+  app.get("/members", (req, res) => {
     try {
-      const result = [].map((job) => {
-        const { orders, ...rest } = job;
-        return rest;
-      });
-      return res.status(200).json(result);
+      const membersArray = jsonData.map(({ member }) => member);
+      const members = [...new Set(membersArray)];
+
+      return res.status(200).json(members);
     } catch (error) {
       res.json(error);
     }
   });
 
-  app.get("/job/:jobId", async (req, res) => {
+  app.get("/games", (req, res) => {
     try {
-      const job = [].find((job) => job.job_id === +req.params.jobId);
-      if (!job) return res.status(404).json(`No record found`);
-      const { orders, ...rest } = job;
-      return res.status(200).json(rest);
+      const membersArray = jsonData.map(({ member }) => member);
+      const members = [...new Set(membersArray)];
+
+      const games = members.map((member) => {
+        const gamesCount = jsonData.filter(
+          (data) => data.member === member
+        ).length;
+
+        return { member, count: gamesCount };
+      });
+
+      return res.status(200).json(games);
     } catch (error) {
       res.json(error);
     }
   });
-  app.get("/orders/:jobId", async (req, res) => {
+  app.get("/member_games/:memberName", async (req, res) => {
     try {
-      const job = [].find((job) => job.job_id === +req.params.jobId);
-      if (!job) return res.status(404).json(`No record found`);
-      const { orders } = job;
-      res.status(200).json(orders);
+      const gamesCounts = ["Chess", "Tennis", "Soccer"].map((game) => {
+        const gameCount = jsonData.filter(
+          (data) => data.member === req.params.memberName && data.game === game
+        ).length;
+
+        return [game, gameCount];
+      });
+
+      res.status(200).json(gamesCounts);
     } catch (error) {
       res.json(error);
     }
